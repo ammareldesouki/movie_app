@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movie_app/core/constants/colors.dart';
 
-
 class BottomNavTheme {
-
-
   static BottomNavigationBarThemeData dark = BottomNavigationBarThemeData(
     backgroundColor: TColors.dark,
     selectedItemColor: TColors.primary,

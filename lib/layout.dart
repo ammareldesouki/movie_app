@@ -1,11 +1,8 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:movie_app/core/constants/image_strings.dart';
 import 'package:movie_app/features/profile/presentation/pages/profile_screen.dart';
 
 class Layout extends StatefulWidget {
-
   const Layout({super.key});
 
   @override
@@ -22,8 +19,6 @@ class _LayoutState extends State<Layout> {
 
       ProfileScreen(),
       ProfileScreen(),
-
-
     ];
     void onTapItem(int index) {
       setState(() {
@@ -39,34 +34,26 @@ class _LayoutState extends State<Layout> {
 
         items: [
           BottomNavigationBarItem(
-            icon:ImageIcon(AssetImage(TImages.homeIcon)),
+            icon: ImageIcon(AssetImage(TImages.homeIcon)),
 
-              label: ""
-
+            label: "",
           ),
           BottomNavigationBarItem(
-            icon:ImageIcon( AssetImage(TImages.searchIcon)),
-              label: ""
-
+            icon: ImageIcon(AssetImage(TImages.searchIcon)),
+            label: "",
           ),
 
           BottomNavigationBarItem(
-            icon:
-               ImageIcon( AssetImage(TImages.expoloreIcon)),
-              label: ""
-
+            icon: ImageIcon(AssetImage(TImages.expoloreIcon)),
+            label: "",
           ),
-
 
           BottomNavigationBarItem(
-            icon:  ImageIcon( AssetImage(TImages.profileIcon)),
-          label: ""
+            icon: ImageIcon(AssetImage(TImages.profileIcon)),
+            label: "",
           ),
-
-
         ],
       ),
-
     );
   }
 }

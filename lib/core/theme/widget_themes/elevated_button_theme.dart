@@ -17,20 +17,13 @@ class TElevatedButtonTheme {
     ),
   );
 
-
-    static final darkElevatedButtonTheme = ElevatedButtonThemeData(
-         style: ElevatedButton.styleFrom(
-
+  static final darkElevatedButtonTheme = ElevatedButtonThemeData(
+    style: ElevatedButton.styleFrom(
       elevation: 0,
-           backgroundColor: TColors.buttonPrimary,
-
-
+      backgroundColor: TColors.buttonPrimary,
 
       padding: const EdgeInsets.symmetric(vertical: 18),
-           textStyle: TextStyle(
-        fontSize: 20,
-        color: Colors.black,
-      ),
+      textStyle: TextStyle(fontSize: 20, color: Colors.black),
 
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
     ),

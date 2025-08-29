@@ -1,12 +1,12 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:movie_app/core/constants/colors.dart';
 import 'package:movie_app/core/constants/image_strings.dart';
 import 'package:movie_app/core/route/route_name.dart';
 import 'package:movie_app/features/auth/presentation/widgets/custome_form_field.dart';
-import 'package:toggle_switch/toggle_switch.dart' show ToggleSwitch;
 
 class LoginScreen extends StatelessWidget {
+  const LoginScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,7 +30,7 @@ class LoginScreen extends StatelessWidget {
             Align(
               alignment: Alignment.bottomRight,
               child: InkWell(
-                onTap: (){
+                onTap: () {
                   Navigator.pushNamed(context, RouteNames.forgetPassword);
                 },
                 child: Text(
@@ -43,24 +43,35 @@ class LoginScreen extends StatelessWidget {
               ),
             ),
 
-            ElevatedButton(onPressed: (){
-
-              Navigator.pushNamed(context, RouteNames.layout);
-
-            }, child: Text("Login",style: Theme.of(context).textTheme.titleMedium,)),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, RouteNames.layout);
+              },
+              child: Text(
+                "Login",
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+            ),
 
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text("Don't have an account ? ",style: Theme.of(context).textTheme.bodySmall!.copyWith(color: Colors.white),),
+                Text(
+                  "Don't have an account ? ",
+                  style: Theme.of(
+                    context,
+                  ).textTheme.bodySmall!.copyWith(color: Colors.white),
+                ),
 
                 InkWell(
                   onTap: () {
-                Navigator.pushNamed(context, RouteNames.register);
-                   },
+                    Navigator.pushNamed(context, RouteNames.register);
+                  },
                   child: Text(
                     "Create an account",
-                    style: Theme.of(context).textTheme.bodySmall!.copyWith(color: TColors.primary),
+                    style: Theme.of(
+                      context,
+                    ).textTheme.bodySmall!.copyWith(color: TColors.primary),
                   ),
                 ),
               ],
@@ -69,24 +80,39 @@ class LoginScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 50),
               child: Row(
-spacing: 10,
+                spacing: 10,
                 children: [
                   Expanded(child: Divider(height: 1)),
-                  Text("Or",style: Theme.of(context).textTheme.bodySmall!.copyWith(color: Colors.white),),
+                  Text(
+                    "Or",
+                    style: Theme.of(
+                      context,
+                    ).textTheme.bodySmall!.copyWith(color: Colors.white),
+                  ),
                   Expanded(child: Divider(height: 1)),
                 ],
               ),
             ),
 
-            ElevatedButton(onPressed: (){}, child: Row(
-               mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                ImageIcon(AssetImage(TImages.googleIcon),color: Colors.black,),
+            ElevatedButton(
+              onPressed: () {},
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ImageIcon(
+                    AssetImage(TImages.googleIcon),
+                    color: Colors.black,
+                  ),
                   SizedBox(width: 16),
-                  Text("Login With Google", style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.black),),
-
-              ],
-            )),
+                  Text(
+                    "Login With Google",
+                    style: Theme.of(
+                      context,
+                    ).textTheme.titleMedium!.copyWith(color: Colors.black),
+                  ),
+                ],
+              ),
+            ),
 
             Center(
               child: Container(
@@ -94,22 +120,32 @@ spacing: 10,
                   border: Border.all(color: TColors.primary),
                   borderRadius: BorderRadius.circular(16),
                 ),
-            
-               child:  Padding(
-                 padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-                 child: Row(
-                   mainAxisSize: MainAxisSize.min,
-                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16.0,
+                    vertical: 8.0,
+                  ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Image(image: AssetImage(TImages.englishIcon), width: 24, height: 24),
+                      Image(
+                        image: AssetImage(TImages.englishIcon),
+                        width: 24,
+                        height: 24,
+                      ),
                       SizedBox(width: 10),
-                      Image(image: AssetImage(TImages.arabicIcon), width: 24, height: 24)
+                      Image(
+                        image: AssetImage(TImages.arabicIcon),
+                        width: 24,
+                        height: 24,
+                      ),
                     ],
                   ),
-               )
+                ),
               ),
-            )
-
+            ),
           ],
         ),
       ),

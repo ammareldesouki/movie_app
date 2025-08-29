@@ -4,6 +4,8 @@ import 'package:movie_app/core/constants/image_strings.dart';
 import 'package:movie_app/features/auth/presentation/widgets/custome_form_field.dart';
 
 class EditProfileScreen extends StatelessWidget {
+  const EditProfileScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -12,7 +14,7 @@ class EditProfileScreen extends StatelessWidget {
           "Profile",
           style: Theme.of(
             context,
-          ).textTheme!.titleLarge!.copyWith(color: TColors.primary),
+          ).textTheme.titleLarge!.copyWith(color: TColors.primary),
         ),
         backgroundColor: Colors.transparent,
         centerTitle: true,
@@ -24,21 +26,26 @@ class EditProfileScreen extends StatelessWidget {
           spacing: 15,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Image(image: AssetImage(TImages.userImage1),height: 118,),
+            Image(image: AssetImage(TImages.userImage1), height: 118),
             TCustomeFormField(prifixIcon: Icons.person, hintText: "Name"),
             TCustomeFormField(prifixIcon: Icons.phone, hintText: "Name"),
-            Text("Change Password",style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: Colors.white),),
-         Spacer(),
+            Text(
+              "Change Password",
+              style: Theme.of(
+                context,
+              ).textTheme.bodyLarge!.copyWith(color: Colors.white),
+            ),
+            Spacer(),
             ElevatedButton(
-                style: Theme.of(context).elevatedButtonTheme.style?.copyWith(
-                  backgroundColor:WidgetStateProperty.all( Colors.red),
-                  foregroundColor:WidgetStateProperty.all( Colors.white),
+              style: Theme.of(context).elevatedButtonTheme.style?.copyWith(
+                backgroundColor: WidgetStateProperty.all(Colors.red),
+                foregroundColor: WidgetStateProperty.all(Colors.white),
+              ),
 
-                ),
-
-                onPressed: (){}, child: Text("Delete Account")),
-        ElevatedButton(onPressed: (){}, child: Text("Save Changes")),
-
+              onPressed: () {},
+              child: Text("Delete Account"),
+            ),
+            ElevatedButton(onPressed: () {}, child: Text("Save Changes")),
           ],
         ),
       ),

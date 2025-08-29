@@ -4,6 +4,8 @@ import 'package:movie_app/core/constants/image_strings.dart';
 import 'package:movie_app/core/route/route_name.dart';
 
 class ProfileScreen extends StatelessWidget {
+  const ProfileScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -14,7 +16,7 @@ class ProfileScreen extends StatelessWidget {
           "Profile",
           style: Theme.of(
             context,
-          ).textTheme!.titleLarge!.copyWith(color: TColors.primary),
+          ).textTheme.titleLarge!.copyWith(color: TColors.primary),
         ),
         backgroundColor: Colors.transparent,
         centerTitle: true,
@@ -27,7 +29,10 @@ class ProfileScreen extends StatelessWidget {
             height: MediaQuery.of(context).size.height * 0.40,
             color: Color(0xff212121),
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0,vertical: 24),
+              padding: const EdgeInsets.symmetric(
+                horizontal: 16.0,
+                vertical: 24,
+              ),
               child: Column(
                 spacing: 10,
 
@@ -43,7 +48,11 @@ class ProfileScreen extends StatelessWidget {
                             height: 118,
                             width: 118,
                           ),
-                          Text("John Doe",style: Theme.of(context).textTheme.titleLarge!.copyWith(color: Colors.white),)
+                          Text(
+                            "John Doe",
+                            style: Theme.of(context).textTheme.titleLarge!
+                                .copyWith(color: Colors.white),
+                          ),
                         ],
                       ),
                       Column(
@@ -77,7 +86,6 @@ class ProfileScreen extends StatelessWidget {
                                 .copyWith(color: Colors.white),
                           ),
                         ],
-
                       ),
                     ],
                   ),
@@ -86,40 +94,71 @@ class ProfileScreen extends StatelessWidget {
                     spacing: 10,
                     children: [
                       Expanded(
-                          flex:2,
-                          child: ElevatedButton(onPressed: (){
-                            Navigator.pushNamed(context, RouteNames.updateProfile);
-
-                          }, child: Text("Edit Profile",style: Theme.of(context).textTheme!.bodyMedium),)),
+                        flex: 2,
+                        child: ElevatedButton(
+                          onPressed: () {
+                            Navigator.pushNamed(
+                              context,
+                              RouteNames.updateProfile,
+                            );
+                          },
+                          child: Text(
+                            "Edit Profile",
+                            style: Theme.of(context).textTheme.bodyMedium,
+                          ),
+                        ),
+                      ),
                       Expanded(
-                        child: ElevatedButton(onPressed: (){},
-                            style: Theme.of(context).elevatedButtonTheme.style?.copyWith(
-                              backgroundColor: WidgetStateProperty.all(Colors.red),
-                              foregroundColor: WidgetStateProperty.all(Colors.white)
-                            ),
-                            child: Row(
-                          mainAxisAlignment:MainAxisAlignment.center,
-                            children: [
-                          Text("Exite"),
-                          Icon(Icons.exit_to_app),
-
-                        ],)),
+                        child: ElevatedButton(
+                          onPressed: () {},
+                          style: Theme.of(context).elevatedButtonTheme.style
+                              ?.copyWith(
+                                backgroundColor: WidgetStateProperty.all(
+                                  Colors.red,
+                                ),
+                                foregroundColor: WidgetStateProperty.all(
+                                  Colors.white,
+                                ),
+                              ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [Text("Exite"), Icon(Icons.exit_to_app)],
+                          ),
+                        ),
                       ),
                     ],
                   ),
-                      Spacer(),
+                  Spacer(),
                   DefaultTabController(
-
-                      length: 2, child: TabBar(
-                    dividerColor: Colors.transparent,
-                    indicatorColor: TColors.primary,
+                    length: 2,
+                    child: TabBar(
+                      dividerColor: Colors.transparent,
+                      indicatorColor: TColors.primary,
 
                       tabs: [
-                    Tab(
-
-                        icon: Icon(Icons.movie_filter,color: TColors.primary,), child: Text("Movies",style:TextStyle(color: Colors.white),)),
-                    Tab(icon: Icon(Icons.library_books,color: TColors.primary,), child: Text("Books",style:TextStyle(color: Colors.white))),
-                  ]))
+                        Tab(
+                          icon: Icon(
+                            Icons.movie_filter,
+                            color: TColors.primary,
+                          ),
+                          child: Text(
+                            "Movies",
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ),
+                        Tab(
+                          icon: Icon(
+                            Icons.library_books,
+                            color: TColors.primary,
+                          ),
+                          child: Text(
+                            "Books",
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ],
               ),
             ),

@@ -10,16 +10,14 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-       theme: TAppTheme.darkAppTheme,
-     initialRoute:RouteNames.splash,
-     onGenerateRoute: AppRouter.generateRoute,
+      theme: TAppTheme.darkAppTheme,
+      initialRoute: RouteNames.splash,
+      onGenerateRoute: AppRouter.generateRoute,
     );
   }
 }
-

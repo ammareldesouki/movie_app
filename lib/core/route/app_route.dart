@@ -1,6 +1,3 @@
-
-
-
 import 'package:flutter/material.dart';
 import 'package:movie_app/core/route/route_name.dart';
 import 'package:movie_app/features/auth/presentation/pages/forget_password.dart';
@@ -20,51 +17,35 @@ class AppRouter {
           settings: settings,
         );
 
-
-
-       case RouteNames.onBoarding:
+      case RouteNames.onBoarding:
         return MaterialPageRoute(
           builder: (_) => OnboardingScreen(),
           settings: settings,
         );
 
-        case RouteNames.login:
-
-          return MaterialPageRoute(
-            builder: (_) => LoginScreen(),
-            settings: settings,
-          );
+      case RouteNames.login:
+        return MaterialPageRoute(
+          builder: (_) => LoginScreen(),
+          settings: settings,
+        );
       case RouteNames.register:
         return MaterialPageRoute(
-          builder: (_) =>SignUpScreen(),
+          builder: (_) => SignUpScreen(),
           settings: settings,
         );
 
-        case RouteNames.forgetPassword:
-          return MaterialPageRoute(
-            builder: (_) => ForgotPasswordScreen(),
-
-          );
-          case RouteNames.layout:
-            return MaterialPageRoute(
-              builder: (_) => Layout(),
-        );
+      case RouteNames.forgetPassword:
+        return MaterialPageRoute(builder: (_) => ForgotPasswordScreen());
+      case RouteNames.layout:
+        return MaterialPageRoute(builder: (_) => Layout());
       case RouteNames.updateProfile:
-        return MaterialPageRoute(
-          builder: (_) => EditProfileScreen(),
-        );
-
-
-
+        return MaterialPageRoute(builder: (_) => EditProfileScreen());
 
       default:
         return MaterialPageRoute(
-          builder:
-              (_) => Scaffold(
-                body: Center(
-                  child: Text('No route defined for ${settings.name}'),
-                ),
-              ),
+          builder: (_) => Scaffold(
+            body: Center(child: Text('No route defined for ${settings.name}')),
+          ),
         );
     }
   }
