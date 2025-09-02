@@ -128,7 +128,7 @@ class ProfileScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                  Spacer(),
+
                   DefaultTabController(
                     length: 2,
                     child: TabBar(
