@@ -3,8 +3,11 @@ class SignUpRequest {
   final String email;
   final String password;
   final String phoneNumber;
+  final String repassword;
+  final int avaterId;
 
   SignUpRequest({
+    required this.repassword, required this.avaterId,
     required this.name,
     required this.email,
     required this.password,
@@ -16,7 +19,10 @@ class SignUpRequest {
       "name": name,
       "email": email,
       "password": password,
-      "phoneNumber": phoneNumber,
+      "phone": phoneNumber,
+      "confirmPassword": repassword,
+      "avaterId": avaterId
+
     };
   }
 }

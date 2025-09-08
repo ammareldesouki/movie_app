@@ -27,8 +27,8 @@ class EditProfileScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Image(image: AssetImage(TImages.userImage1), height: 118),
-            TCustomeFormField(prifixIcon: Icons.person, hintText: "Name"),
-            TCustomeFormField(prifixIcon: Icons.phone, hintText: "Name"),
+            TCustomeFormField(prefixIcon: Icon(Icons.person), hint: "Name"),
+            TCustomeFormField(prefixIcon: Icon(Icons.phone), hint: "Name"),
             Text(
               "Change Password",
               style: Theme.of(

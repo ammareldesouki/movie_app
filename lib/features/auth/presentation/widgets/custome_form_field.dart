@@ -1,25 +1,104 @@
 import 'package:flutter/material.dart';
 
-class TCustomeFormField extends StatelessWidget {
-  final String hintText;
-  // final TextEditingController controller;
-  final IconData prifixIcon;
-  final bool? isPasswordField;
 
+class TCustomeFormField extends StatefulWidget {
   const TCustomeFormField({
-    super.key,
-    required this.hintText,
-    required this.prifixIcon,
-    this.isPasswordField = false,
+    this.controller,
+    this.focusNode,
+    this.nextFocus,
+    this.label,
+    this.hint,
+    this.isObscured = false,
+    this.iconData,
+    this.textInputType = TextInputType.text,
+    this.backgroundColor,
+    this.hintTextStyle,
+    this.labelTextStyle,
+    this.cursorColor,
+    this.readOnly = false,
+    this.validation,
+    this.onTap,
+    this.maxLines,
+    this.prefixIcon,
+    this.borderBackgroundColor,
+    this.suffixIcon,
   });
+
+  final TextEditingController? controller;
+  final FocusNode? focusNode;
+  final FocusNode? nextFocus;
+  final bool isObscured;
+  final String? label;
+  final String? hint;
+  final TextInputType textInputType;
+  final IconData? iconData;
+  final Color? backgroundColor;
+  final Color? borderBackgroundColor;
+  final TextStyle? hintTextStyle;
+  final TextStyle? labelTextStyle;
+  final Color? cursorColor;
+  final bool readOnly;
+  final int? maxLines;
+  final Widget? prefixIcon;
+  final Widget? suffixIcon;
+  final String? Function(String?)? validation;
+  final void Function()? onTap;
+
+  @override
+  State<TCustomeFormField> createState() => _TCustomeFormFieldState();
+}
+
+class _TCustomeFormFieldState extends State<TCustomeFormField> {
+  late bool hidden = widget.isObscured;
+  String? errorText;
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      decoration: InputDecoration(
-        prefixIcon: Icon(prifixIcon),
-        hintText: hintText,
-      ),
-    );
+    return
+
+
+      TextFormField(
+        maxLines: 1,
+        controller: widget.controller,
+
+        style: TextStyle(color: Colors.white),
+        obscureText: hidden,
+        keyboardType: widget.textInputType,
+        obscuringCharacter: '*',
+        cursorColor: Colors.white,
+
+
+        validator: (value) {
+          if (widget.validation == null) {
+            setState(() => errorText = null);
+          } else {
+            setState(() => errorText = widget.validation!(value));
+          }
+          return errorText;
+        },
+        decoration: InputDecoration(
+          contentPadding: EdgeInsets.all(12),
+          hintText: widget.hint,
+          prefixIcon: widget.prefixIcon,
+          suffixIcon: widget.isObscured
+              ? IconButton(
+            onPressed: () => setState(() => hidden = !hidden),
+            iconSize: 24,
+            isSelected: !hidden,
+            color: widget.cursorColor,
+            selectedIcon: const Icon(Icons.visibility),
+            icon: Icon(Icons.visibility_off),
+          )
+              : widget.suffixIcon,
+          hintStyle: TextStyle(color: Colors.white),
+          border: InputBorder.none,
+          enabledBorder: InputBorder.none,
+          errorStyle: TextStyle(
+            fontSize: 18,
+            color: Colors.white,
+          ),
+        ),
+      );
+
   }
 }

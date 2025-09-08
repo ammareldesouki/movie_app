@@ -31,9 +31,9 @@ class ForgotPasswordScreen extends StatelessWidget {
               Image(image: AssetImage(TImages.forgetPassword)),
 
               TCustomeFormField(
-                hintText: 'Enter your email',
+                hint: 'Enter your email',
 
-                prifixIcon: Icons.email,
+                prefixIcon: Icon(Icons.email),
               ),
 
               ElevatedButton(

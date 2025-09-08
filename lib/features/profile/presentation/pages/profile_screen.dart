@@ -2,15 +2,33 @@ import 'package:flutter/material.dart';
 import 'package:movie_app/core/constants/colors.dart';
 import 'package:movie_app/core/constants/image_strings.dart';
 import 'package:movie_app/core/route/route_name.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
+
+  @override
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
+  SharedPreferences? _preferences;
+
+  @override
+  void initState() {
+    super.initState();
+    _initPrefs();
+  }
+
+  Future<void> _initPrefs() async {
+    _preferences = await SharedPreferences.getInstance();
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-
       appBar: AppBar(
         title: Text(
           "Profile",
@@ -22,7 +40,6 @@ class ProfileScreen extends StatelessWidget {
         centerTitle: true,
         iconTheme: IconThemeData(color: TColors.primary),
       ),
-
       body: Column(
         children: [
           Container(
@@ -34,64 +51,74 @@ class ProfileScreen extends StatelessWidget {
                 vertical: 24,
               ),
               child: Column(
-                spacing: 10,
-
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Column(
-                        spacing: 10,
                         children: [
                           Image(
                             image: AssetImage(TImages.userImage1),
                             height: 118,
                             width: 118,
                           ),
+                          SizedBox(height: 10),
                           Text(
                             "John Doe",
-                            style: Theme.of(context).textTheme.titleLarge!
+                            style: Theme
+                                .of(context)
+                                .textTheme
+                                .titleLarge!
                                 .copyWith(color: Colors.white),
                           ),
                         ],
                       ),
                       Column(
-                        spacing: 10,
-
                         children: [
                           Text(
                             "10",
-                            style: Theme.of(context).textTheme.headlineLarge!
+                            style: Theme
+                                .of(context)
+                                .textTheme
+                                .headlineLarge!
                                 .copyWith(color: Colors.white),
                           ),
+                          SizedBox(height: 10),
                           Text(
                             "Wish List",
-                            style: Theme.of(context).textTheme.titleLarge!
+                            style: Theme
+                                .of(context)
+                                .textTheme
+                                .titleLarge!
                                 .copyWith(color: Colors.white),
                           ),
                         ],
                       ),
                       Column(
-                        spacing: 10,
-
                         children: [
                           Text(
                             "10",
-                            style: Theme.of(context).textTheme.headlineLarge!
+                            style: Theme
+                                .of(context)
+                                .textTheme
+                                .headlineLarge!
                                 .copyWith(color: Colors.white),
                           ),
+                          SizedBox(height: 10),
                           Text(
                             " History",
-                            style: Theme.of(context).textTheme.titleLarge!
+                            style: Theme
+                                .of(context)
+                                .textTheme
+                                .titleLarge!
                                 .copyWith(color: Colors.white),
                           ),
                         ],
                       ),
                     ],
                   ),
-
+                  SizedBox(height: 10),
                   Row(
-                    spacing: 10,
                     children: [
                       Expanded(
                         flex: 2,
@@ -108,10 +135,20 @@ class ProfileScreen extends StatelessWidget {
                           ),
                         ),
                       ),
+                      SizedBox(width: 10),
                       Expanded(
                         child: ElevatedButton(
-                          onPressed: () {},
-                          style: Theme.of(context).elevatedButtonTheme.style
+                          onPressed: () async {
+                            await _preferences?.remove("AuthToken");
+                            if (mounted) {
+                              Navigator.pushNamedAndRemoveUntil(
+                                  context, RouteNames.login, (route) => false);
+                            }
+                          },
+                          style: Theme
+                              .of(context)
+                              .elevatedButtonTheme
+                              .style
                               ?.copyWith(
                                 backgroundColor: WidgetStateProperty.all(
                                   Colors.red,
@@ -122,19 +159,18 @@ class ProfileScreen extends StatelessWidget {
                               ),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
-                            children: [Text("Exite"), Icon(Icons.exit_to_app)],
+                            children: [Text("Exit"), Icon(Icons.exit_to_app)],
                           ),
                         ),
                       ),
                     ],
                   ),
-
+                  SizedBox(height: 10),
                   DefaultTabController(
                     length: 2,
                     child: TabBar(
                       dividerColor: Colors.transparent,
                       indicatorColor: TColors.primary,
-
                       tabs: [
                         Tab(
                           icon: Icon(
