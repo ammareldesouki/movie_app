@@ -5,6 +5,8 @@ class SignInRequest {
   SignInRequest({required this.email, required this.password});
 
   Map<String, dynamic> toJson() {
-    return {"email": email, "password": password};
+    return {"email": email.toString(), "password": password.toString(),};
   }
+
+
 }
