@@ -20,13 +20,13 @@ class WebServices {
 
   WebServices._() {
     freePrimaryDio.options.connectTimeout = const Duration(milliseconds: 30000);
-    freePrimaryDio.options.baseUrl = ApiConstat.baseUrl;
+    freePrimaryDio.options.baseUrl = ApiConstat.AuthbaseUrl;
 
     freeSecondaryDio.options.connectTimeout = const Duration(
       milliseconds: 30000,
     );
 
     tokenDio.options.connectTimeout = const Duration(milliseconds: 30000);
-    tokenDio.options.baseUrl = ApiConstat.baseUrl;
+    tokenDio.options.baseUrl = ApiConstat.AuthbaseUrl;
   }
 }

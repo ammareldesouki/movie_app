@@ -3,6 +3,7 @@ import 'package:movie_app/core/route/route_name.dart';
 import 'package:movie_app/features/auth/presentation/pages/forget_password.dart';
 import 'package:movie_app/features/auth/presentation/pages/login_screen.dart';
 import 'package:movie_app/features/auth/presentation/pages/sign_up.dart';
+import 'package:movie_app/features/home/presentation/pages/home_screen.dart';
 import 'package:movie_app/features/on_boarding/presentation/pages/on_boarding.dart';
 import 'package:movie_app/features/profile/presentation/pages/edit_profile.dart';
 import 'package:movie_app/features/splash/presentation/pages/spalsh_screen.dart';
@@ -11,6 +12,11 @@ import 'package:movie_app/layout.dart';
 class AppRouter {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
+      case RouteNames.home:
+        return MaterialPageRoute(
+          builder: (_) => HomeScreen(),
+          settings: settings,
+        );
       case RouteNames.splash:
         return MaterialPageRoute(
           builder: (_) => SplashScreen(),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movie_app/core/constants/image_strings.dart';
+import 'package:movie_app/features/home/presentation/pages/home_screen.dart';
 import 'package:movie_app/features/profile/presentation/pages/profile_screen.dart';
 
 class Layout extends StatefulWidget {
@@ -14,7 +15,7 @@ class _LayoutState extends State<Layout> {
   @override
   Widget build(BuildContext context) {
     final List<Widget> screen = [
-      ProfileScreen(),
+      HomeScreen(),
       ProfileScreen(),
 
       ProfileScreen(),

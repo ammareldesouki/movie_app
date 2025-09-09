@@ -18,6 +18,9 @@ class TImages {
   static const String userImage3 = "assets/images/uesr3.png";
 
   static const String searchIcon = "assets/icons/search.png";
+  static const String searchIconFilled = "assets/icons/serchIconbar.png";
+  static const String avilableImage = "assets/images/availablenow.png";
+  static const String whatchImage = "assets/images/watchnow.png";
 
   static const String homeIcon = "assets/icons/home.png";
   static const String profileIcon = "assets/icons/profile.png";
