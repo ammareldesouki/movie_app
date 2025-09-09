@@ -15,6 +15,8 @@ class GetAllMovieSuccsed extends HomeState {
 
 class GetAllMovieError extends HomeState {}
 
+
+
 class GetMoviesByCategoryLoading extends HomeState {}
 
 class GetMoviesByCategorySuccsed extends HomeState {

@@ -5,9 +5,11 @@ import 'package:movie_app/features/home/presentation/manager/home_bloc.dart';
 import 'package:movie_app/features/home/presentation/widgets/movie_card.dart';
 
 class ListOfMovieHorizontal extends StatelessWidget {
+
   final List<MovieEntity> movies;
 
   const ListOfMovieHorizontal({super.key, required this.movies});
+
 
   @override
   Widget build(BuildContext context) {
@@ -39,11 +41,15 @@ class ListOfMovieHorizontal extends StatelessWidget {
                 return MovieCard(movie: state.movies[index]);
               },
               separatorBuilder: (BuildContext context, int index) =>
-                  const SizedBox(width: 10),
+                  const SizedBox(
+                width: 10,
+              ),
             ),
           );
         }
-        return const SizedBox(height: 200);
+        return const SizedBox(
+          height: 200,
+        );
       },
     );
   }

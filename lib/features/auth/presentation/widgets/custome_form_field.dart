@@ -54,17 +54,23 @@ class _TCustomeFormFieldState extends State<TCustomeFormField> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: Container(
-        decoration: BoxDecoration(
-          color: widget.backgroundColor ?? Colors.transparent,
+    return
 
-          borderRadius: BorderRadius.circular(16),
-        ),
-        child: TextFormField(
-          maxLines: 1,
-          controller: widget.controllerstyle: TextStyle(color: Colors.white),
+
+      Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Container(
+          decoration: BoxDecoration(
+              color: widget.backgroundColor?? Colors.transparent,
+
+              borderRadius: BorderRadius.circular(16)
+          ),
+          child: TextFormField(
+
+            maxLines: 1,
+            controller: widget.controller,
+
+            style: TextStyle(color: Colors.white),
             obscureText: hidden,
             keyboardType: widget.textInputType,
             obscuringCharacter: '*',

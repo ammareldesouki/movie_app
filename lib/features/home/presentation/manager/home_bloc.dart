@@ -10,7 +10,6 @@ import 'package:movie_app/features/home/domain/use_cases/get_movie_by_category.d
 import '../../domain/entities/MovieResponse.dart';
 
 part 'home_event.dart';
-
 part 'home_state.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
@@ -18,7 +17,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   late HomeDataSourceInterface _homeDataSourceInterface;
   late GetAllMovieUseCase _getAllMovieUseCase;
   late GetMoviesByCategoryUseCase _getMoviesByCategoryUseCase;
-
   HomeBloc() : super(HomeInitial()) {
     on<GetAllMoviesEvent>((_getAllMovies));
     on<GetMoviesByCategoryEvent>((_getMoviesByCategory));
@@ -47,9 +45,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     _homeRepository = HomeRepositortImpl(_homeDataSourceInterface);
     _getMoviesByCategoryUseCase = GetMoviesByCategoryUseCase(_homeRepository);
     emit(GetMoviesByCategoryLoading());
-    final result = await _getMoviesByCategoryUseCase.getMoviesByCategory(
-      event.category,
-    );
+    final result = await _getMoviesByCategoryUseCase.getMoviesByCategory(event.category);
 
     return result.fold((fail) {
       emit(GetMoviesByCategoryError());

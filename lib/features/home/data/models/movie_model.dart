@@ -1,3 +1,4 @@
+
 import '../../domain/entities/MovieResponse.dart';
 
 class MovieModel {
@@ -16,19 +17,19 @@ class MovieModel {
   final String largeCoverImage;
 
   MovieModel.fromJson(Map<String, dynamic> json)
-    : id = json['id'] as int,
-      url = json['url'] as String,
-      imdbCode = json['imdb_code'] as String,
-      title = json['title'] as String,
-      englishTitle = json['title_english'] as String,
-      longTitle = json['title_long'] as String,
-      slug = json['slug'] as String,
-      year = json['year'] as int,
-      rating = (json['rating'] as num).toDouble(),
-      runtime = json['runtime'] as int,
-      genres = List<String>.from(json['genres'] ?? []),
-      mediumCoverImage = json['medium_cover_image'] as String,
-      largeCoverImage = json['large_cover_image'] as String;
+      : id = json['id'] as int,
+        url = json['url'] as String,
+        imdbCode = json['imdb_code'] as String,
+        title = json['title'] as String,
+        englishTitle = json['title_english'] as String,
+        longTitle = json['title_long'] as String,
+        slug = json['slug'] as String,
+        year = json['year'] as int,
+        rating = (json['rating'] as num).toDouble(),
+        runtime = json['runtime'] as int,
+        genres = List<String>.from(json['genres'] ?? []),
+        mediumCoverImage = json['medium_cover_image'] as String,
+        largeCoverImage = json['large_cover_image'] as String;
 
   MovieEntity toEntity() {
     return MovieEntity(

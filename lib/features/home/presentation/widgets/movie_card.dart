@@ -1,11 +1,13 @@
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:movie_app/features/home/domain/entities/MovieResponse.dart';
 
 class MovieCard extends StatelessWidget {
-  final MovieEntity movie;
-
-  const MovieCard({super.key, required this.movie});
+ final MovieEntity movie;
+  const MovieCard({
+    super.key, required this.movie,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -34,19 +36,23 @@ class MovieCard extends StatelessWidget {
               width: 57,
               decoration: BoxDecoration(
                 color: Colors.black87,
-                borderRadius: BorderRadius.circular(16),
+                borderRadius:
+                     BorderRadius.circular(16),
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
-                    movie.rating.toString(),
-                    style: Theme.of(
-                      context,
-                    ).textTheme.bodySmall?.copyWith(color: Colors.white),
-                  ),
+                  Text(movie.rating.toString(),
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodySmall
+                          ?.copyWith(color: Colors.white)),
                   const SizedBox(width: 4),
-                  const Icon(Icons.star, color: Colors.amber, size: 16),
+                  const Icon(
+                    Icons.star,
+                    color: Colors.amber,
+                    size: 16,
+                  )
                 ],
               ),
             ),

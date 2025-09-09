@@ -1,3 +1,5 @@
+
+
 class MovieEntity {
   final int id;
   final String url;
@@ -32,36 +34,32 @@ class MovieEntity {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is MovieEntity &&
-          runtimeType == other.runtimeType &&
-          id == other.id &&
-          url == other.url &&
-          imdbCode == other.imdbCode &&
-          title == other.title &&
-          englishTitle == other.englishTitle &&
-          longTitle == other.longTitle &&
-          slug == other.slug &&
-          year == other.year &&
-          rating == other.rating &&
-          runtime == other.runtime &&
-          genres == other.genres &&
-          mediumCoverImage == other.mediumCoverImage &&
-          largeCoverImage == other.largeCoverImage;
+          other is MovieEntity && runtimeType == other.runtimeType &&
+              id == other.id && url == other.url &&
+              imdbCode == other.imdbCode && title == other.title &&
+              englishTitle == other.englishTitle &&
+              longTitle == other.longTitle && slug == other.slug &&
+              year == other.year && rating == other.rating &&
+              runtime == other.runtime && genres == other.genres &&
+              mediumCoverImage == other.mediumCoverImage &&
+              largeCoverImage == other.largeCoverImage;
 
   @override
-  int get hashCode => Object.hash(
-    id,
-    url,
-    imdbCode,
-    title,
-    englishTitle,
-    longTitle,
-    slug,
-    year,
-    rating,
-    runtime,
-    genres,
-    mediumCoverImage,
-    largeCoverImage,
-  );
+  int get hashCode =>
+      Object.hash(
+          id,
+          url,
+          imdbCode,
+          title,
+          englishTitle,
+          longTitle,
+          slug,
+          year,
+          rating,
+          runtime,
+          genres,
+          mediumCoverImage,
+          largeCoverImage);
+
+
 }

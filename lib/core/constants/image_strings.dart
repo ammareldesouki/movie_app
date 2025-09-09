@@ -22,6 +22,7 @@ class TImages {
   static const String avilableImage = "assets/images/availablenow.png";
   static const String whatchImage = "assets/images/watchnow.png";
 
+
   static const String homeIcon = "assets/icons/home.png";
   static const String profileIcon = "assets/icons/profile.png";
 
