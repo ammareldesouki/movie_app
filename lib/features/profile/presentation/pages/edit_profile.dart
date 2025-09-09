@@ -30,7 +30,7 @@ class EditProfileScreen extends StatelessWidget {
             TCustomeFormField(prefixIcon: Icon(Icons.person), hint: "Name"),
             TCustomeFormField(prefixIcon: Icon(Icons.phone), hint: "Name"),
             Text(
-              "Change Password",
+              "RestPassword Password",
               style: Theme.of(
                 context,
               ).textTheme.bodyLarge!.copyWith(color: Colors.white),

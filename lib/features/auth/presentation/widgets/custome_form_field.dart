@@ -57,45 +57,57 @@ class _TCustomeFormFieldState extends State<TCustomeFormField> {
     return
 
 
-      TextFormField(
-        maxLines: 1,
-        controller: widget.controller,
+      Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Container(
+          decoration: BoxDecoration(
+              color: widget.backgroundColor?? Colors.transparent,
 
-        style: TextStyle(color: Colors.white),
-        obscureText: hidden,
-        keyboardType: widget.textInputType,
-        obscuringCharacter: '*',
-        cursorColor: Colors.white,
+              borderRadius: BorderRadius.circular(16)
+          ),
+          child: TextFormField(
+
+            maxLines: 1,
+            controller: widget.controller,
+
+            style: TextStyle(color: Colors.white),
+            obscureText: hidden,
+            keyboardType: widget.textInputType,
+            obscuringCharacter: '*',
+            cursorColor: Colors.white,
 
 
-        validator: (value) {
-          if (widget.validation == null) {
-            setState(() => errorText = null);
-          } else {
-            setState(() => errorText = widget.validation!(value));
-          }
-          return errorText;
-        },
-        decoration: InputDecoration(
-          contentPadding: EdgeInsets.all(12),
-          hintText: widget.hint,
-          prefixIcon: widget.prefixIcon,
-          suffixIcon: widget.isObscured
-              ? IconButton(
-            onPressed: () => setState(() => hidden = !hidden),
-            iconSize: 24,
-            isSelected: !hidden,
-            color: widget.cursorColor,
-            selectedIcon: const Icon(Icons.visibility),
-            icon: Icon(Icons.visibility_off),
-          )
-              : widget.suffixIcon,
-          hintStyle: TextStyle(color: Colors.white),
-          border: InputBorder.none,
-          enabledBorder: InputBorder.none,
-          errorStyle: TextStyle(
-            fontSize: 18,
-            color: Colors.white,
+            validator: (value) {
+              if (widget.validation == null) {
+                setState(() => errorText = null);
+              } else {
+                setState(() => errorText = widget.validation!(value));
+              }
+              return errorText;
+            },
+            decoration: InputDecoration(
+
+              contentPadding: EdgeInsets.all(12),
+              hintText: widget.hint,
+              prefixIcon: widget.prefixIcon,
+              suffixIcon: widget.isObscured
+                  ? IconButton(
+                onPressed: () => setState(() => hidden = !hidden),
+                iconSize: 24,
+                isSelected: !hidden,
+                color: widget.cursorColor,
+                selectedIcon: const Icon(Icons.visibility),
+                icon: Icon(Icons.visibility_off),
+              )
+                  : widget.suffixIcon,
+              hintStyle: TextStyle(color: Colors.white),
+              border: InputBorder.none,
+              enabledBorder: InputBorder.none,
+              errorStyle: TextStyle(
+                fontSize: 18,
+                color: Colors.white,
+              ),
+            ),
           ),
         ),
       );
