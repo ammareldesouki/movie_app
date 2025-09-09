@@ -4,10 +4,7 @@ import 'package:movie_app/core/constants/image_strings.dart';
 import 'package:movie_app/features/auth/presentation/widgets/custome_form_field.dart';
 import 'package:movie_app/features/home/presentation/widgets/movie_card.dart';
 
-import '../../data/category.dart';
-import '../../domain/entities/MovieResponse.dart';
 import '../manager/home_bloc.dart';
-import '../widgets/list_movieBycategory_horizontal.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
@@ -84,11 +81,7 @@ class HomeScreen extends StatelessWidget {
                     ),
                   ) : SizedBox.shrink(),
 
-                  // The GridView.builder should be wrapped in a widget that allows it to take
-                  // its full size without being constrained, but this is handled by
-                  // the outer SingleChildScrollView. To avoid a nested scroll view
-                  // (which is what you had with Expanded), you must add `shrinkWrap: true`
-                  // and `physics: const NeverScrollableScrollPhysics()` to the GridView.
+
                   state is GetAllMovieSuccsed?
                   GridView.builder(
                     shrinkWrap: true,
