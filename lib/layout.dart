@@ -12,10 +12,12 @@ class Layout extends StatefulWidget {
 
 class _LayoutState extends State<Layout> {
   int _selectedIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     final List<Widget> screen = [
       HomeScreen(),
+
       ProfileScreen(),
 
       ProfileScreen(),

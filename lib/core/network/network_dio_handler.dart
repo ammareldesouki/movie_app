@@ -4,14 +4,15 @@ import 'package:dio/dio.dart';
 import 'package:movie_app/core/network/api_constant.dart';
 
 class NetworkDioHandler {
+  final String _baseUrl;
   late Dio dio = Dio(
     BaseOptions(
-      baseUrl: ApiConstat.AuthbaseUrl,
+      baseUrl: ApiConstat.MovieBaseUrl,
       receiveTimeout: const Duration(seconds: 10),
     ),
   );
 
-  NetworkDioHandler() {
+  NetworkDioHandler(this._baseUrl) {
     dio.interceptors.add(
       InterceptorsWrapper(
         onRequest: (RequestOptions options, RequestInterceptorHandler handler) {

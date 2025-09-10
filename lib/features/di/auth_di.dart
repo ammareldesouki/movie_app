@@ -1,3 +1,4 @@
+import 'package:movie_app/core/network/api_constant.dart';
 import 'package:movie_app/core/network/network_dio_handler.dart';
 import 'package:movie_app/features/auth/data/data_sources/auth_data_source.dart';
 import 'package:movie_app/features/auth/data/repositories_imp/auth_repository_imp.dart';
@@ -15,8 +16,7 @@ abstract class AuthDi {
   // Use Cases
   // Bloc
   static Future<void> setUp() async {
-    sl
-      ..registerLazySingleton(() => NetworkDioHandler())
+    sl..registerLazySingleton(() => NetworkDioHandler(ApiConstat.AuthbaseUrl))
       ..registerLazySingleton<AuthDataSourceInterface>(
         () => RemoteAuthDataSource(sl.get<NetworkDioHandler>()),
       )
