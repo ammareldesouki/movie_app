@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:movie_app/core/network/end_points.dart';
+import 'package:movie_app/core/network/network_dio_handler.dart';
 import 'package:movie_app/features/auth/domain/entities/sign_in_request.dart';
 import 'package:movie_app/features/auth/domain/entities/sign_up_request.dart';
 
@@ -10,20 +11,21 @@ abstract class AuthDataSourceInterface {
 }
 
 class RemoteAuthDataSource implements AuthDataSourceInterface {
-  final Dio dio;
-  RemoteAuthDataSource({required this.dio});
+  final NetworkDioHandler _dioHandler;
+
+  RemoteAuthDataSource(this._dioHandler);
 
   @override
   Future<Response> SignIn(SignInRequest request) async {
     print("------------{} $request");
     print("------------{} ${request.toJson()}");
-    return dio.post(EndPoints.SignIn, data: request.toJson());
+    return _dioHandler.dio.post(EndPoints.SignIn, data: request.toJson());
   }
 
   @override
   Future<Response> SignUp(SignUpRequest request) async {
     print("------------{} $request");
 
-    return dio.post(EndPoints.SignUp, data: request.toJson());
+    return _dioHandler.dio.post(EndPoints.SignUp, data: request.toJson());
   }
 }

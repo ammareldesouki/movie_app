@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_app/core/route/route_name.dart';
 import 'package:movie_app/features/auth/presentation/pages/forget_password.dart';
 import 'package:movie_app/features/auth/presentation/pages/login_screen.dart';
@@ -8,6 +9,9 @@ import 'package:movie_app/features/on_boarding/presentation/pages/on_boarding.da
 import 'package:movie_app/features/profile/presentation/pages/edit_profile.dart';
 import 'package:movie_app/features/splash/presentation/pages/spalsh_screen.dart';
 import 'package:movie_app/layout.dart';
+
+import '../../features/auth/presentation/manager/auth_bloc.dart';
+import '../di_handler/app_di_handler.dart';
 
 class AppRouter {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -31,12 +35,20 @@ class AppRouter {
 
       case RouteNames.login:
         return MaterialPageRoute(
-          builder: (_) => LoginScreen(),
+          builder: (_) =>
+              BlocProvider(
+                create: (context) => sl<AuthBloc>(),
+                child: LoginScreen(),
+              ),
           settings: settings,
         );
       case RouteNames.register:
         return MaterialPageRoute(
-          builder: (_) => SignUpScreen(),
+          builder: (_) =>
+              BlocProvider.value(
+                value: sl<AuthBloc>(),
+                child: SignUpScreen(),
+              ),
           settings: settings,
         );
 
@@ -49,9 +61,11 @@ class AppRouter {
 
       default:
         return MaterialPageRoute(
-          builder: (_) => Scaffold(
-            body: Center(child: Text('No route defined for ${settings.name}')),
-          ),
+          builder: (_) =>
+              Scaffold(
+                body: Center(
+                    child: Text('No route defined for ${settings.name}')),
+              ),
         );
     }
   }

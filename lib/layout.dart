@@ -29,31 +29,42 @@ class _LayoutState extends State<Layout> {
 
     return Scaffold(
       body: screen[_selectedIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _selectedIndex,
-        onTap: onTapItem,
-
-        items: [
-          BottomNavigationBarItem(
-            icon: ImageIcon(AssetImage(TImages.homeIcon)),
-
-            label: "",
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10.0),
+        child: Container(
+          decoration: BoxDecoration(
+            color: Colors.transparent,
+            borderRadius: BorderRadius.circular(20),
           ),
-          BottomNavigationBarItem(
-            icon: ImageIcon(AssetImage(TImages.searchIcon)),
-            label: "",
-          ),
+          child: BottomNavigationBar(
+            backgroundColor: Colors.transparent,
+            currentIndex: _selectedIndex,
+            onTap: onTapItem,
 
-          BottomNavigationBarItem(
-            icon: ImageIcon(AssetImage(TImages.expoloreIcon)),
-            label: "",
-          ),
+            items: [
+              BottomNavigationBarItem(
+                icon: ImageIcon(AssetImage(TImages.homeIcon)),
 
-          BottomNavigationBarItem(
-            icon: ImageIcon(AssetImage(TImages.profileIcon)),
-            label: "",
+                label: "",
+              ),
+              BottomNavigationBarItem(
+                icon: ImageIcon(AssetImage(TImages.searchIcon)),
+                label: "",
+              ),
+
+              BottomNavigationBarItem(
+                icon: ImageIcon(AssetImage(TImages.expoloreIcon)),
+                label: "",
+              ),
+
+              BottomNavigationBarItem(
+                icon: ImageIcon(AssetImage(TImages.profileIcon)),
+                label: "",
+              ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }
