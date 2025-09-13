@@ -10,4 +10,6 @@ abstract class RouteNames {
   static const String addEvent = '/addevent';
   static const String profile = '/profile';
   static const String updateProfile = '/updateprofile';
+
+  static const String movieDetailes = '/movieDetailes';
 }

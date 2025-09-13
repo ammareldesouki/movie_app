@@ -9,6 +9,8 @@ class SingInEvent extends AuthEvent {
   SingInEvent(this.data);
 }
 
+class GetProfileEvent extends AuthEvent {}
+
 class SingUpEvent extends AuthEvent {
   final SignUpRequest data;
 

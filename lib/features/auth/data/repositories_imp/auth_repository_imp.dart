@@ -1,9 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
-import 'package:movie_app/core/enum/response_status.dart';
 import 'package:movie_app/core/failure/failure.dart';
 import 'package:movie_app/core/failure/server_failure.dart';
-import 'package:movie_app/core/local_storge/auth_local_storge.dart';
 import 'package:movie_app/features/auth/data/data_sources/auth_data_source.dart';
 import 'package:movie_app/features/auth/domain/entities/sign_in_request.dart';
 import 'package:movie_app/features/auth/domain/entities/sign_in_response.dart';
@@ -11,6 +9,9 @@ import 'package:movie_app/features/auth/domain/entities/sign_up_request.dart';
 import 'package:movie_app/features/auth/domain/entities/sign_up_response.dart';
 import 'package:movie_app/features/auth/domain/repositories/auth_repositorise_interface.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../../profile/domain/entities/profile_request.dart';
+import '../../../profile/domain/entities/profile_response.dart';
 
 class AuthRepositoryImp implements AuthRepositoriseInterface {
   final AuthDataSourceInterface _authDataSourceInterface;
@@ -84,6 +85,27 @@ class AuthRepositoryImp implements AuthRepositoriseInterface {
 
           messageEn: dioExption.response?.data.toString(),
         ),
+      );
+    }
+  }
+
+
+  @override
+  Future<Either<Failure, ProfileResponse>> getProfile(
+      GetProfileRequest data) async {
+    try {
+      final response = await _authDataSourceInterface.getProfile(data);
+      print("------------${response.toString()}");
+
+      if (response.statusCode == 200) {
+        ProfileResponse profileResponse = ProfileResponse.fromJson(
+            response.data['data']);
+        print("dfgbhjnkml,");
+      }
+      return Right(ProfileResponse.fromJson(response.data['data']));
+    } catch (e) {
+      return Left(
+          ServerFailure(message: e.toString(),)
       );
     }
   }

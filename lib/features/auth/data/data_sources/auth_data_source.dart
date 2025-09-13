@@ -4,10 +4,14 @@ import 'package:movie_app/core/network/network_dio_handler.dart';
 import 'package:movie_app/features/auth/domain/entities/sign_in_request.dart';
 import 'package:movie_app/features/auth/domain/entities/sign_up_request.dart';
 
+import '../../../profile/domain/entities/profile_request.dart';
+
 abstract class AuthDataSourceInterface {
   Future<Response> SignIn(SignInRequest request);
 
   Future<Response> SignUp(SignUpRequest request);
+
+  Future<Response> getProfile(GetProfileRequest data);
 }
 
 class RemoteAuthDataSource implements AuthDataSourceInterface {
@@ -27,5 +31,11 @@ class RemoteAuthDataSource implements AuthDataSourceInterface {
     print("------------{} $request");
 
     return _dioHandler.dio.post(EndPoints.SignUp, data: request.toJson());
+  }
+
+
+  Future<Response> getProfile(GetProfileRequest data) {
+    return _dioHandler.dio.get(EndPoints.Getprofile, options: Options(
+        headers: {"Authorization": "Bearer ${data.toJson()}"}));
   }
 }

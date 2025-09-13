@@ -26,3 +26,23 @@ class GetMoviesByCategorySuccsed extends HomeState {
 }
 
 class GetMoviesByCategoryError extends HomeState {}
+
+class FetchAllMovieLoading extends HomeState {}
+
+class FetchAllMovieSuccsed extends HomeState {
+  final Map<String, List<MovieEntity>> movies;
+
+  FetchAllMovieSuccsed(this.movies);
+}
+
+class FetchAllMovieError extends HomeState {}
+
+class GetMovieDetailsLoading extends HomeState {}
+
+class GetMovieDetailsSuccsed extends HomeState {
+  final MovieDetailsResponse movieDetails;
+
+  GetMovieDetailsSuccsed(this.movieDetails);
+}
+
+class GetMovieDetailsError extends HomeState {}

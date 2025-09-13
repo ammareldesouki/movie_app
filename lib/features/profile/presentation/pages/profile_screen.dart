@@ -40,8 +40,20 @@ class _ProfileScreenState extends State<ProfileScreen> {
         centerTitle: true,
         iconTheme: IconThemeData(color: TColors.primary),
       ),
-      body: Column(
+        body:
+        //     BlocProvider(
+        // create: (context) => sl<AuthBloc>()..add(GetProfileEvent()),
+        //
+        // child: BlocConsumer<AuthBloc, AuthState>(
+        // listener: (context, state) {
+        //
+        //
+        // },
+        // builder: (context, state) {
+        //   return
+        Column(
         children: [
+          // state is ProfileSuccsed?
           Container(
             height: MediaQuery.of(context).size.height * 0.40,
             color: Color(0xff212121),
@@ -64,7 +76,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           ),
                           SizedBox(height: 10),
                           Text(
-                            "John Doe",
+                            "state.profile.name",
                             style: Theme
                                 .of(context)
                                 .textTheme
@@ -198,9 +210,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ],
               ),
             ),
-          ),
+          )
         ],
-      ),
+        )
+
+// ),
+// ),
     );
   }
 }

@@ -6,8 +6,11 @@ import 'package:dio/dio.dart';
 import 'package:movie_app/core/failure/failure.dart';
 import 'package:movie_app/features/home/data/data_sources/home_data_source.dart';
 import 'package:movie_app/features/home/domain/entities/MovieResponse.dart';
+import 'package:movie_app/features/home/domain/entities/movie_details_response.dart'
+    hide Data;
 import 'package:movie_app/features/home/domain/repositories/home_repository.dart';
 
+import '../../../../core/constants/data.dart';
 import '../models/movie_model.dart';
 
 class HomeRepositortImpl implements HomeRepoSitory {
@@ -60,6 +63,39 @@ class HomeRepositortImpl implements HomeRepoSitory {
       throw Exception('An unexpected error occurred: $e');
     }
   }
+
+ @override
+ Future<Either<Failure, Map<String, List<MovieEntity>>>> fitchAllMovie() async {
+   Map<String, List<MovieEntity>>movies = {};
+   for (var category in Data.category) {
+     final response = await getMoviesByCategory(category);
+     movies[category] = response.getOrElse(() => []);
+   }
+   return Right(movies);
+ }
+
+ @override
+ Future<Either<Failure, MovieDetailsResponse>> getMovieDetails(
+     int movieId) async {
+   try {
+     final response = await _homeDataSourceInterface.getMovieDetails(movieId);
+     if (response.statusCode == 200) {
+       var movie = MovieDetailsResponse.fromJson(response.data);
+
+       print(movie.toJson());
+       return Right(
+           movie
+       );
+     } else {
+       throw Exception(
+           'Failed to load movies with status code: ${response.statusCode}');
+     }
+   } on DioException catch (e) {
+     throw Exception('Failed to load movies: ${e.message}');
+   } catch (e) {
+     throw Exception('An unexpected error occurred: $e');
+   }
+ }
 
 
 
