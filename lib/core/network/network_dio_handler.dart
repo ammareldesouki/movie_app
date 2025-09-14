@@ -28,10 +28,12 @@ class NetworkDioHandler {
         onResponse: (Response response, ResponseInterceptorHandler handler) {
           // Do something with response data.
           // If you want to reject the request with a error message,
+          //
+          // log(
+          //   "✅ Api Success Response : ${response.requestOptions.baseUrl}   ${response.requestOptions.path}",
+          // );
+          log("✅ Api Success Response : ${response.data}");
 
-          log(
-            "✅ Api Success Response : ${response.requestOptions.baseUrl}   ${response.requestOptions.path}",
-          );
           return handler.next(response);
         },
         onError: (DioException error, ErrorInterceptorHandler handler) {

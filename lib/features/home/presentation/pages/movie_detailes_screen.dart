@@ -2,41 +2,51 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_app/features/home/presentation/manager/home_bloc.dart';
+import 'package:movie_app/features/home/presentation/widgets/container_cast_details.dart';
 
-class MovieDetailesScreen extends StatelessWidget {
-  const MovieDetailesScreen({super.key});
+import '../widgets/container_about_movie.dart';
+
+class MovieDetailesScreen extends StatefulWidget {
+  final int movieId;
+
+  const MovieDetailesScreen({super.key, required this.movieId});
+
+  @override
+  State<MovieDetailesScreen> createState() => _MovieDetailesScreenState();
+}
+
+class _MovieDetailesScreenState extends State<MovieDetailesScreen> {
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Movie Details"),
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-      ),
-      body: BlocBuilder<HomeBloc, HomeState>(
-        builder: (context, state) {
-          // ✅ Debug log
-          debugPrint("Current state in MovieDetailesScreen: $state");
+      body: BlocProvider(
+        create: (context) =>
+            HomeBloc()..add(GetMovieDetailsEvent(widget.movieId)),
+        child: BlocBuilder<HomeBloc, HomeState>(
+          builder: (context, state) {
+            debugPrint("Current state in MovieDetailesScreen: $state");
 
-          if (state is GetMovieDetailsLoading) {
-            return const Center(child: CircularProgressIndicator());
-          } else if (state is GetMovieDetailsSuccsed) {
-            final movie = state.movieDetails.data?.movie;
+            if (state is GetMovieDetailsLoading) {
+              return const Center(child: CircularProgressIndicator());
+            } else if (state is GetMovieDetailsSuccsed) {
+              final movie = state.movieDetails.data?.movie;
 
-            if (movie == null) {
-              return const Center(child: Text("No movie details found"));
-            }
+              if (movie == null) {
+                return const Center(child: Text("No movie details found"));
+              }
+              print("#------------- ${state.movieDetails.data.toString()},");
 
-            return SingleChildScrollView(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // Poster
-                  Center(
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(16),
+              return SingleChildScrollView(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Container(
                       child: CachedNetworkImage(
                         imageUrl: movie.largeCoverImage ?? "",
                         placeholder: (context, url) =>
@@ -44,81 +54,183 @@ class MovieDetailesScreen extends StatelessWidget {
                         errorWidget: (context, url, error) =>
                             const Icon(Icons.error, size: 100),
                         fit: BoxFit.cover,
-                        height: 400,
                       ),
                     ),
-                  ),
-                  const SizedBox(height: 20),
+                    const SizedBox(height: 20),
 
-                  // Title
-                  Text(
-                    movie.title ?? "No title",
-                    style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                      fontWeight: FontWeight.bold,
+                    // Title
+                    Column(
+                      children: [
+                        Text(
+                          movie.title ?? "No title",
+                          style: Theme.of(context).textTheme.headlineLarge
+                              ?.copyWith(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
+                          textAlign: TextAlign.center,
+                        ),
+                        Text(
+                          movie.year.toString() ?? "-",
+                          style: Theme.of(context).textTheme.titleMedium
+                              ?.copyWith(color: Colors.white),
+                        ),
+                      ],
                     ),
-                  ),
 
-                  const SizedBox(height: 8),
+                    const SizedBox(height: 8),
 
-                  // Rating + Year + Runtime
-                  Row(
-                    children: [
-                      const Icon(Icons.star, color: Colors.amber, size: 24),
-                      const SizedBox(width: 8),
-                      Text(
-                        movie.rating?.toString() ?? "-",
-                        style: Theme.of(context).textTheme.titleLarge,
+                    ElevatedButton(
+                      onPressed: () {},
+                      child: Text(
+                        "Watch",
+                        style: TextStyle(color: Colors.white),
                       ),
-                      const Spacer(),
-                      Text(
-                        '${movie.year ?? "-"} | ${movie.runtime ?? "-"} min',
-                        style: Theme.of(context).textTheme.titleMedium,
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.red,
+
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(16.0),
+                        ),
+                        elevation: 2,
                       ),
-                    ],
-                  ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        spacing: 6,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          ContainerAboutMovie(
+                            icon: Icons.star,
+                            title: movie.rating.toString(),
+                          ),
+                          ContainerAboutMovie(
+                            icon: Icons.access_time_filled_sharp,
+                            title: movie.runtime.toString(),
+                          ),
 
-                  const SizedBox(height: 20),
+                          ContainerAboutMovie(
+                            icon: Icons.favorite,
+                            title: movie.likeCount.toString(),
+                          ),
+                        ],
+                      ),
+                    ),
 
-                  // Genres
-                  Text('Genres', style: Theme.of(context).textTheme.titleLarge),
-                  const SizedBox(height: 8),
-                  Wrap(
-                    spacing: 8.0,
-                    runSpacing: 4.0,
-                    children:
-                        movie.genres
-                            ?.map((genre) => Chip(label: Text(genre)))
-                            .toList() ??
-                        [],
-                  ),
+                    const SizedBox(height: 20),
+                    Column(
+                      children: [
+                        CachedNetworkImage(
+                          imageUrl: movie.mediumScreenshotImage1 ?? "",
+                          placeholder: (context, url) =>
+                              const Center(child: CircularProgressIndicator()),
+                          errorWidget: (context, url, error) =>
+                              const Icon(Icons.error, size: 100),
+                          fit: BoxFit.cover,
+                        ),
+                        CachedNetworkImage(
+                          imageUrl: movie.mediumScreenshotImage2 ?? "",
+                          placeholder: (context, url) =>
+                              const Center(child: CircularProgressIndicator()),
+                          errorWidget: (context, url, error) =>
+                              const Icon(Icons.error, size: 100),
+                          fit: BoxFit.cover,
+                        ),
+                        CachedNetworkImage(
+                          imageUrl: movie.mediumScreenshotImage3 ?? "",
+                          placeholder: (context, url) =>
+                              const Center(child: CircularProgressIndicator()),
+                          errorWidget: (context, url, error) =>
+                              const Icon(Icons.error, size: 100),
+                          fit: BoxFit.cover,
+                        ),
+                      ],
+                    ),
 
-                  const SizedBox(height: 20),
+                    const SizedBox(height: 20),
 
-                  // Synopsis
-                  Text(
-                    'Synopsis',
-                    style: Theme.of(context).textTheme.titleLarge,
-                  ),
-                  const SizedBox(height: 8),
-                  Text(
-                    movie.descriptionIntro ?? "No description available",
-                    style: Theme.of(context).textTheme.bodyLarge,
-                  ),
-                ],
-              ),
-            );
-          } else if (state is GetMovieDetailsError) {
-            return Center(
-              child: Text(
-                "Failed to load details:",
-                style: const TextStyle(color: Colors.red),
-              ),
-            );
-          }
+                    Text(
+                      'Summary',
+                      style: Theme.of(
+                        context,
+                      ).textTheme.titleLarge!.copyWith(color: Colors.white),
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      movie.descriptionIntro ?? "No description available",
+                      style: Theme.of(
+                        context,
+                      ).textTheme.bodyLarge!.copyWith(color: Colors.white),
+                    ),
+                    const SizedBox(height: 20),
+                    Text(
+                      "Cast",
+                      style: Theme.of(
+                        context,
+                      ).textTheme.bodyLarge!.copyWith(color: Colors.white),
+                    ),
 
-          // Initial or unknown state
-          return const Center(child: Text("No data yet"));
-        },
+                    ListView.separated(
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
+                      itemCount: movie.cast!.length,
+                      itemBuilder: (context, index) {
+                        final castMember = movie.cast![index];
+                        return ContainerCastDetails(
+                          castMember: movie.cast![index],
+                        );
+                      },
+                      separatorBuilder: (BuildContext context, int index) =>
+                          SizedBox(height: 10),
+                    ),
+                    Text(
+                      'Genres',
+                      style: Theme.of(
+                        context,
+                      ).textTheme.titleLarge!.copyWith(color: Colors.white),
+                    ),
+                    const SizedBox(height: 8),
+                    Wrap(
+                      spacing: 8.0,
+                      runSpacing: 4.0,
+                      children:
+                          movie.genres
+                              ?.map(
+                                (genre) => Container(
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 12.0,
+                                    vertical: 6.0,
+                                  ),
+                                  decoration: BoxDecoration(
+                                    color: const Color(0xff282A28),
+                                    borderRadius: BorderRadius.circular(16.0),
+                                  ),
+                                  child: Text(
+                                    genre,
+                                    style: const TextStyle(color: Colors.white),
+                                  ),
+                                ),
+                              )
+                              .toList() ??
+                          [],
+                    ),
+                  ],
+                ),
+              );
+            } else if (state is GetMovieDetailsError) {
+              return Center(
+                child: Text(
+                  "Failed to load details:",
+                  style: const TextStyle(color: Colors.red),
+                ),
+              );
+            }
+
+            // Initial or unknown state
+            return const Center(child: Text("No data yet"));
+          },
+        ),
       ),
     );
   }

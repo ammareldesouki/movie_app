@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:movie_app/core/constants/local_storge_key.dart';
 import 'package:movie_app/core/failure/failure.dart';
 import 'package:movie_app/core/failure/server_failure.dart';
 import 'package:movie_app/features/auth/data/data_sources/auth_data_source.dart';
@@ -10,7 +11,6 @@ import 'package:movie_app/features/auth/domain/entities/sign_up_response.dart';
 import 'package:movie_app/features/auth/domain/repositories/auth_repositorise_interface.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../../profile/domain/entities/profile_request.dart';
 import '../../../profile/domain/entities/profile_response.dart';
 
 class AuthRepositoryImp implements AuthRepositoriseInterface {
@@ -27,7 +27,7 @@ class AuthRepositoryImp implements AuthRepositoriseInterface {
       if (response.statusCode == 200 &&
           response.data["message"] == "Success Login") {
         var data = SignInResponse.fromJson(response.data);
-        prefs.setString("AuthToken", data.token);
+        prefs.setString(LocalKeys.AuthToken, data.token);
 
         return Right(data);
       } else {
@@ -89,23 +89,38 @@ class AuthRepositoryImp implements AuthRepositoriseInterface {
     }
   }
 
-
   @override
-  Future<Either<Failure, ProfileResponse>> getProfile(
-      GetProfileRequest data) async {
+  Future<Either<Failure, ProfileResponse>> getProfile(String data) async {
     try {
       final response = await _authDataSourceInterface.getProfile(data);
-      print("------------${response.toString()}");
 
       if (response.statusCode == 200) {
-        ProfileResponse profileResponse = ProfileResponse.fromJson(
-            response.data['data']);
-        print("dfgbhjnkml,");
+        var user = ProfileResponse.fromJson(response.data['data']);
+        print("--------------#----------${user}");
+        return Right(user);
+      } else {
+        return Left(
+          ServerFailure(
+            statusCode: response.statusCode.toString(),
+            messageEn: response.data["message"],
+          ),
+        );
       }
-      return Right(ProfileResponse.fromJson(response.data['data']));
-    } catch (e) {
+    } on DioException catch (dioExption) {
       return Left(
-          ServerFailure(message: e.toString(),)
+        ServerFailure(
+          statusCode: dioExption.response.toString(),
+          messageEn: dioExption.response?.data["message"],
+        ),
+      );
+    } catch (error) {
+      return Left(
+        ServerFailure(
+          statusCode: error.toString(),
+          messageEn: error.toString(),
+          messageAr: '',
+          message: '',
+        ),
       );
     }
   }

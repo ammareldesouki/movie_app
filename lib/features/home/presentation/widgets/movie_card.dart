@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_app/features/home/domain/entities/MovieResponse.dart';
 import 'package:movie_app/features/home/presentation/manager/home_bloc.dart';
-
-import '../../../../core/route/route_name.dart';
+import 'package:movie_app/features/home/presentation/pages/movie_detailes_screen.dart';
 
 class MovieCard extends StatelessWidget {
   final MovieEntity movie;
@@ -22,9 +21,11 @@ class MovieCard extends StatelessWidget {
       builder: (context, state) {
         return InkWell(
           onTap: () {
-            context.read<HomeBloc>().add(GetMovieDetailsEvent(movie.id));
-            Navigator.pushNamed(context, RouteNames.movieDetailes);
+            Navigator.push(context, MaterialPageRoute(
+                builder: (context) => MovieDetailesScreen(movieId: movie.id)));
+
           },
+
 
           child: Container(
             width: 150,

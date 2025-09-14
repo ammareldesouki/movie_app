@@ -12,11 +12,13 @@ class ProfileResponse {
   });
 
   factory ProfileResponse.fromJson(Map<String, dynamic> json) {
+    // Access the nested 'data' map first for all user details
+
     return ProfileResponse(
-      name: json["data"]["name"],
-      phone: json["data"]["phone"],
-      avaterId: int.parse(json["data"]["avaterId"]),
-      password: json["data"]["password"],
+      name: json['name'] as String,
+      phone: json['phone'] as String,
+      avaterId: json['avaterId'] as int,
+      password: json['password'] as String,
     );
   }
 }

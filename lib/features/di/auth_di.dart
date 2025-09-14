@@ -3,6 +3,7 @@ import 'package:movie_app/core/network/network_dio_handler.dart';
 import 'package:movie_app/features/auth/data/data_sources/auth_data_source.dart';
 import 'package:movie_app/features/auth/data/repositories_imp/auth_repository_imp.dart';
 import 'package:movie_app/features/auth/domain/repositories/auth_repositorise_interface.dart';
+import 'package:movie_app/features/auth/domain/use_cases/get_profile_use_case.dart';
 import 'package:movie_app/features/auth/domain/use_cases/sign_in_use_case.dart';
 import 'package:movie_app/features/auth/presentation/manager/auth_bloc.dart';
 
@@ -28,8 +29,10 @@ abstract class AuthDi {
       )
       ..registerLazySingleton(
         () => SignUpUseCase(sl.get<AuthRepositoriseInterface>()),
-      )
-      ..registerLazySingleton<AuthBloc>(() => AuthBloc());
+      )..registerLazySingleton<AuthBloc>(() =>
+        AuthBloc())..registerLazySingleton(() =>
+        GetProfileUseCase(sl.get<AuthRepositoriseInterface>()))
+    ;
     // ..registerLazySingleton(()=>ForgetPasswordUseCase(sl.get<AuthRepositoriseInterface>()));
   }
 }

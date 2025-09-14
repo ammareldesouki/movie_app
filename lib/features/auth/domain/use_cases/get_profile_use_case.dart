@@ -2,7 +2,6 @@ import 'package:dartz/dartz.dart';
 import 'package:movie_app/features/auth/domain/repositories/auth_repositorise_interface.dart';
 
 import '../../../../core/failure/failure.dart';
-import '../../../profile/domain/entities/profile_request.dart';
 import '../../../profile/domain/entities/profile_response.dart';
 
 class GetProfileUseCase {
@@ -10,7 +9,7 @@ class GetProfileUseCase {
 
   GetProfileUseCase(this._authRepositoriseInterface);
 
-  Future<Either<Failure, ProfileResponse>> call(GetProfileRequest data) async {
+  Future<Either<Failure, ProfileResponse>> call(String data) async {
     return await _authRepositoriseInterface.getProfile(data);
   }
 }
