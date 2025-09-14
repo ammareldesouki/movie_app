@@ -24,3 +24,13 @@ final class AuthSignUpError extends AuthState {
 
   AuthSignUpError({required this.error});
 }
+
+class ProfileLoading extends AuthState {}
+
+class ProfileSuccsed extends AuthState {
+  final ProfileResponse profile;
+
+  ProfileSuccsed(this.profile);
+}
+
+class ProfileError extends AuthState {}

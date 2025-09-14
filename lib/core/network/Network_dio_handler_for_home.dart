@@ -3,16 +3,15 @@ import 'dart:developer';
 import 'package:dio/dio.dart';
 import 'package:movie_app/core/network/api_constant.dart';
 
-class NetworkDioHandler {
-  final String _baseUrl;
+class NetworkDioHandlerForHome {
   late Dio dio = Dio(
     BaseOptions(
-      baseUrl: ApiConstat.MovieBaseUrl,
-      receiveTimeout: const Duration(seconds: 10),
+      baseUrl: ApiConstat.MoviesUrl,
+      receiveTimeout: const Duration(seconds: 2),
     ),
   );
 
-  NetworkDioHandler(this._baseUrl) {
+  NetworkDioHandlerForHome() {
     dio.interceptors.add(
       InterceptorsWrapper(
         onRequest: (RequestOptions options, RequestInterceptorHandler handler) {
@@ -28,12 +27,10 @@ class NetworkDioHandler {
         onResponse: (Response response, ResponseInterceptorHandler handler) {
           // Do something with response data.
           // If you want to reject the request with a error message,
-          //
-          // log(
-          //   "✅ Api Success Response : ${response.requestOptions.baseUrl}   ${response.requestOptions.path}",
-          // );
-          log("✅ Api Success Response : ${response.data}");
 
+          log(
+            "✅ Api Success Response : ${response.requestOptions.baseUrl}   ${response.requestOptions.path}",
+          );
           return handler.next(response);
         },
         onError: (DioException error, ErrorInterceptorHandler handler) {

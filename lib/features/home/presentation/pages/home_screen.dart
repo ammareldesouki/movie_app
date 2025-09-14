@@ -6,13 +6,25 @@ import 'package:movie_app/features/home/presentation/widgets/movie_card.dart';
 
 import '../manager/home_bloc.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  @override
+  void initState() {
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
+
     PageController _pageController = PageController(viewportFraction: 0.75);
     return Scaffold(
       body: BlocProvider(
-        create: (context) => HomeBloc()..add(GetAllMoviesEvent()),
+        create: (context) =>
+        HomeBloc()
+          ..add(GetAllMoviesEvent()),
         child: BlocConsumer<HomeBloc, HomeState>(
           listener: (context, state) {},
           builder: (context, state) {
@@ -21,13 +33,17 @@ class HomeScreen extends StatelessWidget {
                 children: [
                   TCustomeFormField(
                     hint: "Search Movie",
-                    prefixIcon: ImageIcon(AssetImage(TImages.searchIconFilled), color: Colors.white,),
+                    prefixIcon: ImageIcon(AssetImage(TImages.searchIconFilled),
+                      color: Colors.white,),
                     backgroundColor: Color(0xff282A28),
                   ),
 
-                  state is GetAllMovieSuccsed?
+                  state is GetAllMovieSuccsed ?
                   SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.5,
+                    height: MediaQuery
+                        .of(context)
+                        .size
+                        .height * 0.5,
                     child: PageView.builder(
                       controller: _pageController,
                       itemCount: state.movies.length,
@@ -55,20 +71,24 @@ class HomeScreen extends StatelessWidget {
                                         borderRadius: BorderRadius.circular(20),
                                         boxShadow: [
                                           BoxShadow(
-                                            color: Colors.black.withOpacity(0.5),
+                                            color: Colors.black.withOpacity(
+                                                0.5),
                                             blurRadius: 10,
                                             offset: Offset(0, 10),
                                           ),
                                         ],
                                         image: DecorationImage(
-                                          image: NetworkImage(state.movies[index].largeCoverImage),
+                                          image: NetworkImage(
+                                              state.movies[index]
+                                                  .largeCoverImage),
                                           fit: BoxFit.cover,
                                         ),
                                       ),
                                     ),
                                     Container(
                                         height: 200,
-                                        child: MovieCard(movie: state.movies[index])),
+                                        child: MovieCard(
+                                            movie: state.movies[index])),
 
 
                                   ],
@@ -82,7 +102,7 @@ class HomeScreen extends StatelessWidget {
                   ) : SizedBox.shrink(),
 
 
-                  state is GetAllMovieSuccsed?
+                  state is GetAllMovieSuccsed ?
                   GridView.builder(
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),

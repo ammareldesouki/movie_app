@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:movie_app/core/constants/image_strings.dart';
-import 'package:movie_app/core/local_storge/auth_local_storge.dart';
+import 'package:movie_app/core/constants/local_storge_key.dart';
 import 'package:movie_app/core/route/route_name.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -24,7 +24,7 @@ class _SplashScreenState extends State<SplashScreen> {
     await Future.delayed(const Duration(seconds: 2));
 
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    final authToken = prefs.getString("AuthToken");
+    final authToken = prefs.getString(LocalKeys.AuthToken);
 
     if (!mounted) return;
 

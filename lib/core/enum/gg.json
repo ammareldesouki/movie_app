@@ -1,0 +1,56 @@
+{
+  "data": {
+    "movie": {
+      "id": 15,
+      "url": "https://yts.mx/movies/16-blocks-2006",
+      "imdb_code": "tt0450232",
+      "title": "16 Blocks",
+      "title_english": "16 Blocks",
+      "title_long": "16 Blocks (2006)",
+      "slug": "16-blocks-2006",
+      "year": 2006,
+      "rating": 6.6,
+      "runtime": 102,
+      "genres": [
+        "Action",
+        "Crime",
+        "Drama",
+        "Thriller"
+      ],
+      "like_count": 52,
+      "description_intro": "\"All they had to do was get across town.\" For aging NYPD detective Jack Mosley, this should've been his last assignment before a well-deserved retirement. The job was simple: transport Edward \"Eddie\" Bunker, a reluctant African-American witness, all the way to the New York State Supreme Court Building 16 blocks from the police department. Until it wasn't. Now Jack and Eddie are on the run from a group of corrupt and dirty cops, led by officer Frank Nugent, who will do anything in their power to stop them from reaching the Supreme Court. It's a race against time that may cost Jack everything he's devoted his job to.—jesusblack-91294",
+      "yt_trailer_code": "55nKvGV0APA",
+      "language": "en",
+      "large_cover_image": "https://yts.mx/assets/images/movies/16_Blocks_2006/large-cover.jpg",
+      "medium_screenshot_image1": "https://yts.mx/assets/images/movies/16_Blocks_2006/medium-screenshot1.jpg",
+      "medium_screenshot_image2": "https://yts.mx/assets/images/movies/16_Blocks_2006/medium-screenshot2.jpg",
+      "medium_screenshot_image3": "https://yts.mx/assets/images/movies/16_Blocks_2006/medium-screenshot3.jpg",
+      "cast": [
+        {
+          "name": "Bruce Willis",
+          "character_name": "Det. Jack Mosley",
+          "url_small_image": "https://yts.mx/assets/images/actors/thumb/nm0000246.jpg",
+          "imdb_code": "0000246"
+        },
+        {
+          "name": "David Morse",
+          "character_name": "Det. Frank Nugent",
+          "url_small_image": "https://yts.mx/assets/images/actors/thumb/nm0001556.jpg",
+          "imdb_code": "0001556"
+        },
+        {
+          "name": "Peter McRobbie",
+          "character_name": "Mike Sheehan",
+          "url_small_image": "https://yts.mx/assets/images/actors/thumb/nm0574513.jpg",
+          "imdb_code": "0574513"
+        },
+        {
+          "name": "David Zayas",
+          "character_name": "Det. Robert Torres",
+          "url_small_image": "https://yts.mx/assets/images/actors/thumb/nm0953882.jpg",
+          "imdb_code": "0953882"
+        }
+      ]
+    }
+  }
+}

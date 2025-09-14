@@ -8,6 +8,8 @@ abstract class AuthDataSourceInterface {
   Future<Response> SignIn(SignInRequest request);
 
   Future<Response> SignUp(SignUpRequest request);
+
+  Future<Response> getProfile(String data);
 }
 
 class RemoteAuthDataSource implements AuthDataSourceInterface {
@@ -27,5 +29,11 @@ class RemoteAuthDataSource implements AuthDataSourceInterface {
     print("------------{} $request");
 
     return _dioHandler.dio.post(EndPoints.SignUp, data: request.toJson());
+  }
+
+
+  Future<Response> getProfile(String data) {
+    return _dioHandler.dio.get(EndPoints.Getprofile, options: Options(
+        headers: {"Authorization": "Bearer $data"}));
   }
 }

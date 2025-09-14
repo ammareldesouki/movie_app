@@ -11,3 +11,11 @@ class GetMoviesByCategoryEvent extends HomeEvent {
   GetMoviesByCategoryEvent(this.category);
 
 }
+
+class FetchAllMovieEvent extends HomeEvent {}
+
+class GetMovieDetailsEvent extends HomeEvent {
+  final int movieId;
+
+  GetMovieDetailsEvent(this.movieId);
+}

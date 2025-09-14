@@ -18,8 +18,8 @@ class AppRouter {
     switch (settings.name) {
       case RouteNames.home:
         return MaterialPageRoute(
-          builder: (_) => HomeScreen(),
-          settings: settings,
+          builder: (_) =>
+              HomeScreen(),
         );
       case RouteNames.splash:
         return MaterialPageRoute(
